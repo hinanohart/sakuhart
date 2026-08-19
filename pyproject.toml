@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=77"]  # 77 is where `license = "MIT"` (PEP 639) is understood
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sakuhart"
+version = "0.1.0"
+description = "Photomosaic generator that works on video too"
+readme = "README-pypi.md"  # PyPI cannot resolve the relative image paths in README.md
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "hinanohart" }]
+keywords = ["photomosaic", "mosaic", "video", "image-processing", "art"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Programming Language :: Python :: 3",
+    "Topic :: Artistic Software",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+dependencies = [
+    "numpy>=1.24",
+    "opencv-python>=4.6,<5",  # 5.0 dropped cv2.CascadeClassifier, which the saliency pass needs
+    "scipy>=1.10",
+]
+
+[project.urls]
+Homepage = "https://github.com/hinanohart/sakuhart"
+
+[project.scripts]
+sakuhart = "sakuhart.cli:main"
+
+[tool.setuptools]
+packages = ["sakuhart"]
+
+[tool.setuptools.package-data]
+sakuhart = ["ATTRIBUTION.md", "samples/demo_target.jpg", "samples/starter/*"]
