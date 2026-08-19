@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+
+# tests/*.mp4 is deliberately NOT ignored. libx264 picks its thread count from
+# the machine's core count, and a different count encodes different bytes, which
+# decode to different pixels -- so a clip rebuilt on someone else's machine will
+# not match the recorded hashes. Shipping the clips is what makes the recorded
+# layer portable; rebuilding them is only for the author, after --update.
